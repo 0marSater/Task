@@ -28,4 +28,4 @@ NOTE:
   - Verify ebs-csi pods running `kubectl get pods -n kube-system`
 
 Project diagram 
-![Project digram](/Images/Diagram.png)
+![Project digram](/Images/Diagram.jpeg)
