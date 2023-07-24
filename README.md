@@ -4,7 +4,7 @@ This project contain 4 folders
 1. ***mongodb-chart***: helm chart to install mongodb on AWS EKS.
 2. ***sqlserver-chart***: helm chart to install sql server db on AWS EKS.
 3. ***redis-chart***: helm chart to install redis on AWS EKS.
-4. *terraform***: contain necessary configuration to provision the whole infrastructure
+4. ***terraform***: contain necessary configuration to provision the whole infrastructure
 5. ***app***: contain the code itself, Dockerfile, Ingress.yaml and deployment.yaml
 -------------------------------------------------------------------------------------
 #First
