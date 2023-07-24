@@ -3,7 +3,7 @@
 ## Project Structure
 
 The project structure is organized as follows:
-![Project strcuture](../Images/projectStructure.png)
+![Project strcuture](../Images/terraform strcturee.png)
 
 The `modules` directory contains subfolders for each module. Each module has its `main.tf`, `variables.tf`, and `output.tf` files, which define the module's configuration, input variables, and output values, respectively.
 
