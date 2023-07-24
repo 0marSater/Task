@@ -3,29 +3,7 @@
 ## Project Structure
 
 The project structure is organized as follows:
-`
-├── modules/
-│   ├── eks/
-│   │   ├── main.tf
-│   │   ├── variables.tf
-│   │   └── output.tf
-│   ├── ecr/
-│   │   ├── main.tf
-│   │   ├── variables.tf
-│   │   └── output.tf
-│   ├── alb/
-│   │   ├── main.tf
-│   │   ├── variables.tf
-│   │   └── output.tf
-│   └── vpc/
-│       ├── main.tf
-│       ├── variables.tf
-│       └── output.tf
-├── main.tf
-├── variables.tf
-└── output.tf
-`
-
+![Project strcuture](../Images/projectStructure.png)
 
 The `modules` directory contains subfolders for each module. Each module has its `main.tf`, `variables.tf`, and `output.tf` files, which define the module's configuration, input variables, and output values, respectively.
 
