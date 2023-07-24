@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Values.name }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+      role: master
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name }}
+        role: master
+    spec:
+      containers:
+        - name: {{ .Values.name }}
+          image: "{{ .Values.image }}:{{ .Values.tag }}"
+          ports:
+            - containerPort: {{ .Values.containerPort }} 
+          volumeMounts:
+            - name: {{ .Values.pvName }} 
+              mountPath: /data
+      volumes:
+        - name: {{ .Values.pvName }} 
+          persistentVolumeClaim:
+            claimName: {{ .Values.pvcName }} 
+
+#ervice.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.serviceName }}
+spec:
+  selector:
+    app: {{ .Values.name }}
+    role: master
+  ports:
+    - protocol: {{ .Values.protocol }}
+      port: {{ .Values.containerPort }}
+      targetPort: {{ .Values.containerPort }}

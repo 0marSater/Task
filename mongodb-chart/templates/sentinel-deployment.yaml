@@ -1,0 +1,22 @@
+# redis-sentinel-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-sentinel
+spec:
+  replicas: 3  # You can adjust the number of replicas as per your requirement
+  selector:
+    matchLabels:
+      app: redis-sentinel
+  template:
+    metadata:
+      labels:
+        app: redis-sentinel
+    spec:
+      containers:
+        - name: redis-sentinel
+          image: redis:latest
+          command: ["redis-sentinel"]
+          args: ["--sentinel", "monitor", "mymaster", "redis-master", "6379", "2"]
+          ports:
+            - containerPort: 26379

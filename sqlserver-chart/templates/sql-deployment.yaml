@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Values.dbName }}
+spec:
+  replicas: 3   
+  selector:
+    matchLabels:
+      app: {{ .Values.dbName }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.dbName }}
+    spec:
+      containers:
+        - name: {{ .Values.dbName }}
+          image: "{{ .Values.image }}:{{ .Values.tag }}"
+          imagePullPolicy: {{ .Values.imagePullPolicy }}
+          ports:
+            - containerPort: {{ .Values.containerPort }}
+          env:
+            - name: ACCEPT_EULA
+              value: "Y"
+            - name: SA_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: sql-server-secret
+                  key: sa-password
+          volumeMounts:
+            - name: pv-sql-server
+              mountPath: /data/db
+      volumes:
+        - name: {{ .Values.pvName }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.pvcName }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.serviceName }}
+spec:
+  selector:
+    app: {{ .Values.dbName }}
+  ports:
+    - name: {{ .Values.dbName }}
+      port: {{ .Values.containerPort }}
+  clusterIP: ClusterIP

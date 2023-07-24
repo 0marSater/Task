@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ .Values.pvName }}
+  labels:
+    type: aws-ebs
+spec:
+  storageClassName: {{ .Values.storageClassName }}
+  capacity:
+    storage: {{ .Values.storageCapacity }}
+  accessModes:
+    - {{ .Values.accessModes }}
+  persistentVolumeReclaimPolicy: {{ .Values.persistentVolumeReclaimPolicy }} #///
+  awsElasticBlockStore:
+    volumeID: "vol-05e743d13750dfefe"  #
+    fsType: ext4  # 

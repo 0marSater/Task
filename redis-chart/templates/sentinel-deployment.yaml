@@ -1,0 +1,35 @@
+# redis-sentinel-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.senName }}
+spec:
+  replicas: 3  # You can adjust the number of replicas as per your requirement
+  selector:
+    matchLabels:
+      app: {{ .Values.senName }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.senName }}
+    spec:
+      containers:
+        - name: {{ .Values.senName }}
+          image: "{{ .Values.image }}:{{ .Values.tag }}"
+          command: ["redis-sentinel"]
+          args: ["--sentinel", "monitor", "mymaster", "redis-master", "6379", "2"]
+          ports:
+            - containerPort: {{ .Values.senContainerPort }} 
+
+# service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.senServiceName }}
+spec:
+  selector:
+    app: {{ .Values.senName }}
+  ports:
+    - protocol: {{ .Values.protocol }}
+      port: {{ .Values.senContainerPort }}
+      targetPort: {{ .Values.senContainerPort }}

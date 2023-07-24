@@ -1,0 +1,28 @@
+# Deployment info
+dbName: sql-server-db
+replicaCount: 3
+
+# Image info
+image: mcr.microsoft.com/mssql/server
+tag: 2019-latest 
+imagePullPolicy: IfNotPresent
+
+# Ports info
+containerPort: 1433
+
+#service
+serviceName: sql-server-service 
+
+
+# PV & PVC info
+pvName: pv-sql-server
+pvcName: sql-server-pvc
+storageClassName: aws-ebs-sc-2
+storageCapacity: 10Gi
+accessModes: ReadWriteOnce
+persistentVolumeReclaimPolicy: Retain
+pvcStorageClain: 2Gi 
+volumeBindingMode: Immediate
+
+ingress:
+  enabled: true

@@ -1,0 +1,30 @@
+# Deployment info
+dbName: mongodb
+replicaCount: 3
+
+# Image info
+image: mongo
+tag: latest
+imagePullPolicy: IfNotPresent
+
+# Ports info
+containerPort: 5000
+
+#ENV info
+initDbName: test-db
+
+#service 
+serviceName: mongo-service
+
+# PV & PVC info
+pvName: pv-mongodb
+pvcName: mongo-pvc
+storageClassName: aws-ebs-sc-1
+storageCapacity: 10Gi
+accessModes: ReadWriteOnce
+persistentVolumeReclaimPolicy: Retain
+pvcStorageClain: 2Gi 
+volumeBindingMode: Immediate
+
+ingress:
+  enabled: true

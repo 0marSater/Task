@@ -1,0 +1,41 @@
+# deployment info
+name: redis
+replicaCount: 3
+
+
+#master service
+serviceName: redis-master
+protocol: TCP
+
+
+#sentinel
+senName: redis-sentinel
+senContainerPort: 26379
+
+
+#sentinel service 
+senServiceName: redis-sentinel
+
+
+# Image info
+image: redis
+tag: latest
+imagePullPolicy: IfNotPresent
+
+
+# Ports info
+containerPort: 6379
+
+
+# PV & PVC info
+pvName: redis-pv
+pvcName: redis-pvc
+storageClassName: aws-ebs-sc-3
+storageCapacity: 10Gi
+accessModes: ReadWriteOnce
+persistentVolumeReclaimPolicy: Retain
+pvcStorageClain: 2Gi 
+volumeBindingMode: Immediate
+
+ingress:
+  enabled: true
