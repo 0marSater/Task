@@ -3,8 +3,7 @@
 ## Project Structure
 
 The project structure is organized as follows:
-
-terraform-project/
+`
 ├── modules/
 │   ├── eks/
 │   │   ├── main.tf
@@ -25,7 +24,7 @@ terraform-project/
 ├── main.tf
 ├── variables.tf
 └── output.tf
-
+`
 
 
 The `modules` directory contains subfolders for each module. Each module has its `main.tf`, `variables.tf`, and `output.tf` files, which define the module's configuration, input variables, and output values, respectively.
