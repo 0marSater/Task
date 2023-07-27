@@ -1,4 +1,4 @@
-## Task
+## WidebotTask
 
 This project contain 4 folders
 1. ***mongodb-chart***: helm chart to install mongodb on AWS EKS.
